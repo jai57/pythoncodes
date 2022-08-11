@@ -1,0 +1,62 @@
+import random
+
+def choose():
+    a=["coding","hacking","current","killer","rockstar","science","maths","data","jumbaa","python","player","condition"]
+    l=random.choice(a)
+    return l
+    
+def jumble(x):
+    k="".join(random.sample(x,len(x)))
+    return k
+    
+def play():
+    p1name=input("enter your name,mr.player 1")
+    p2name=input("enter your name,mr.player 2")
+    p1s=0
+    p2s=0
+    turn=0
+    while(1):
+        #computer's Question
+        word=choose()
+        jumbled=jumble(word)
+        print("here is my question for u\n",jumbled)
+        
+        #player 1
+        if turn%2==0:
+            print("hello mr.",p1name,"its ur turn")
+            
+            
+            p1i=input("enter your word ")
+            if p1i==word:
+                p1s+=1
+                print("ur answer is correct and ")
+            else:
+                print("better luck next time")
+            print("your score is",p1s)
+            wish=int(input("do u want to continue-- 1 or 0?"))
+            if wish==0:
+                break
+            
+        #player 2
+        else:
+            print("hello mr.",p2name,"it's ur turn")
+            p2i=input("enter your word ")
+            if p2i==word:
+                p2s+=1
+                print("ur answer is correct and ")
+            else:
+                print("better luck next time")
+            print("here is ur score",p2s)
+            wish=int(input("do u want to continue-- 1 or 0?"))
+            if wish==0:
+                
+                break
+        turn+=1
+        
+    if(p1s>p2s):
+        print("congrax bro,",p1name,"u r the winner")
+    else:
+        print("congrax bro,",p2name,"u r the winner")
+    print("thank you for playing guys")
+        
+play()
