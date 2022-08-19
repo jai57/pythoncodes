@@ -1,0 +1,33 @@
+def magicSquare(n):
+    magic=[]
+    for i in range(n):
+        square=[]
+        for j in range(n):
+            square.append(0)
+        magic.append(square)
+    i=n//2
+    j=n-1
+    count=1 
+    while(count<=n*n):
+        if i==-1 and j==n:
+            j=n-2
+            i=0
+        elif j==n:
+            j=0
+        elif i<0:
+            i=n-1
+        if magic[i][j]!=0:
+            j=j-2
+            i=i+1
+            continue
+        else:
+            magic[i][j]=count
+            count+=1
+        i=i-1
+        j=j+1
+        
+    return magic
+        
+a=(int(input()))
+print(magicSquare(a))
+        
