@@ -1,0 +1,94 @@
+# -*- coding: utf-8 -*-
+"""
+Created on Fri Sep  9 16:04:11 2022
+
+@author: Jai
+"""
+
+from PIL import Image
+import random
+
+def show_board():
+    img=Image.open("snake.png")
+    img.show()
+    
+def check_ladder(n):
+    ladders={1:38,4:14,8:30,21:42,28:76,50:67,71:92,80:99}
+    if n in ladders.keys():
+        print("you got ladder man and now u went to",ladders[n])
+        return ladders[n]
+    else:
+        return n
+    
+def check_snake(n):
+    snakes={32:10,36:6,48:26,62:18,88:24,95:56,97:78}
+    if n in snakes.keys():
+        return snakes[n]
+    else:
+        return n
+    
+def reached_end(n):
+    end=100
+    if n==end:
+        return True
+    else:
+        return False
+    
+def play():
+    p1_name=input("player 1,please enter your name") 
+    p2_name=input("player 2,please enter your name") 
+    pp1=0 
+    pp2=0
+    turn=0
+    end=100
+    while(1):        
+        if turn%2==0:
+            print(p1_name,"it's your turn bro")
+            wish=int(input("press 1 to continue or 0 to exit"))
+            if wish==0:
+                print(p1_name,"u scored",pp1)
+                print(p2_name,"u scored",pp2)
+                break
+            else:
+                dice=random.randint(1,6)
+                print("ur dice value:",dice)
+                pp1=pp1+dice                
+                pp1=check_ladder(pp1)
+                pp1=check_snake(pp1)
+                if pp1>end:
+                    pp1=pp1-dice
+                print("ur score:",pp1)
+                print()
+                if reached_end(pp1):
+                    print(p1_name,"u won yaar")
+                    break
+        else:
+            print(p2_name,"it's your turn bro")
+            wish=int(input("press 1 to continue or 0 to exit"))
+            if wish==0:
+                print(p1_name,"u scored",pp1)
+                print(p2_name,"u scored",pp2)
+                break
+            else:
+                dice=random.randint(1,6)
+                print("ur dice value:",dice)
+                pp2=pp2+dice
+                pp2=check_ladder(pp2)
+                pp2=check_snake(pp2)
+                
+                
+                if pp2>end:
+                    pp2=pp2-dice
+                print("ur score:",pp2)
+                print()
+                    
+                if reached_end(pp2):
+                    print(p2_name,"u won yaar")
+                    break
+        turn+=1
+        
+#show_board()
+play()
+        
+            
+            
