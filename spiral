@@ -1,0 +1,29 @@
+import numpy as np
+
+def spiral(m,n,a):
+    row=0 
+    col=0
+    
+    while(row<m and col<n):
+        
+        for i in range(col,n):
+            print(a[row][i])
+        row+=1 
+        
+        for i in range(row,m):
+            print(a[i][n-1])
+        n-=1 
+        
+        if(row<m):
+            for i in range(n-1,col-1,-1):
+                print(a[m-1][i])
+        m-=1 
+        
+        if(col<n):
+            for i in range(m-1,row-1,-1):
+                print(a[i][col])
+        col+=1
+        
+mat=np.array(np.arange(1,17).reshape(4,4))
+spiral(4,4,mat)
+print(mat)
